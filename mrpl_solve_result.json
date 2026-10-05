@@ -1,0 +1,74 @@
+{
+  "run_id": "RUN_1790936154349",
+  "model_hash": "2c3e53212dc023d6ebd1f9de49dee8e3cf69dd22a4eb6d2f7edd9bd0d463a376",
+  "status": "OPTIMAL",
+  "objective": 10197.0,
+  "dual_bound": 10197.0,
+  "relative_gap": 0.0,
+  "iterations": 0,
+  "node_count": 1,
+  "solve_time_sec": 0.02200329990591854,
+  "verifier": {
+    "passed": true,
+    "recomputed_objective": 10197.0,
+    "max_primal_violation": 0.0,
+    "max_primal_residual": 0.0,
+    "max_integrality_violation": 0.0,
+    "max_kkt_violation": 0.0,
+    "dual_bound_certified": true,
+    "dual_bound_valid": true,
+    "kahan_objective": 10197.0,
+    "objective_difference": 0.0,
+    "model_hash": "2c3e53212dc023d6ebd1f9de49dee8e3cf69dd22a4eb6d2f7edd9bd0d463a376",
+    "checklist": [
+      {
+        "check_name": "Variable Box Bounds",
+        "passed": true,
+        "measured_value": 0.0,
+        "tolerance": 1e-06,
+        "message": "All variables within lower and upper bounds"
+      },
+      {
+        "check_name": "Inequality Constraints (Ax <= b)",
+        "passed": true,
+        "measured_value": 0.0,
+        "tolerance": 1e-06,
+        "message": "All inequality constraints satisfied"
+      },
+      {
+        "check_name": "Equality Constraints (Ex == d)",
+        "passed": true,
+        "measured_value": 0.0,
+        "tolerance": 1e-06,
+        "message": "All equality constraints satisfied"
+      },
+      {
+        "check_name": "Integrality Verification",
+        "passed": true,
+        "measured_value": 0.0,
+        "tolerance": 1e-06,
+        "message": "All discrete variables have integer values"
+      },
+      {
+        "check_name": "Objective Recomputation",
+        "passed": true,
+        "measured_value": 0.0,
+        "tolerance": 1e-06,
+        "message": "Recomputed objective 10197.00000000 matches reported 10197.00000000"
+      },
+      {
+        "check_name": "Dual Bound Validity Check",
+        "passed": true,
+        "measured_value": 0.0,
+        "tolerance": 1e-06,
+        "message": "Dual bound 10197.00000000 validly bounds objective 10197.00000000"
+      }
+    ]
+  },
+  "sensitivity": {
+    "shadow_prices": [],
+    "reduced_costs": [],
+    "breakeven_prices": [],
+    "why_not_x": []
+  }
+}

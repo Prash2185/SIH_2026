@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services — CrystalClean</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .page-header {
+            padding: 10rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header .blob-1 {
+            position: absolute;
+            top: -120px;
+            right: -100px;
+            width: 550px;
+            height: 550px;
+            background: linear-gradient(135deg, #b3d4ff, #66aaff);
+            border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+            filter: blur(90px);
+            opacity: 0.3;
+        }
+
+        .ph-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        .ph-breadcrumb {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 1.4rem;
+        }
+
+        .ph-breadcrumb a {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Detailed service blocks */
+        .svc-detail-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            padding: 5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+        }
+
+        .svc-detail-block:last-child {
+            border-bottom: none;
+        }
+
+        .svc-detail-block.flip {
+            direction: rtl;
+        }
+
+        .svc-detail-block.flip>* {
+            direction: ltr;
+        }
+
+        .svc-img-box {
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--gray-light);
+        }
+
+        .svc-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .svc-num-large {
+            font-size: 5.5rem;
+            font-weight: 900;
+            letter-spacing: -0.06em;
+            color: var(--gray-light);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        .svc-title {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .svc-body {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.78;
+            margin-bottom: 1rem;
+        }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.4rem 0;
+        }
+
+        .mini-pill {
+            padding: 0.3rem 0.9rem;
+            background: rgba(0, 87, 255, 0.07);
+            border: 1.5px solid rgba(0, 87, 255, 0.15);
+            border-radius: var(--radius-pill);
+            font-size: 0.77rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Pricing */
+        .pricing-section {
+            padding: 6rem 0;
+            background: var(--bg-white);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-top: 3rem;
+        }
+
+        .p-card {
+            border-radius: var(--radius-card);
+            border: 1.5px solid rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            background: var(--bg);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .p-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.09);
+        }
+
+        .p-card.featured {
+            background: var(--dark);
+            border-color: var(--dark);
+        }
+
+        .p-badge {
+            position: absolute;
+            top: 1.4rem;
+            right: 1.4rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent);
+            color: #fff;
+            border-radius: var(--radius-pill);
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .p-tier {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .p-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .p-card.featured .p-name {
+            color: #fff;
+        }
+
+        .p-price {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            color: var(--dark);
+            line-height: 1;
+        }
+
+        .p-card.featured .p-price {
+            color: #fff;
+        }
+
+        .p-per {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--gray);
+        }
+
+        .p-divider {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.07);
+            margin: 1.4rem 0;
+        }
+
+        .p-card.featured .p-divider {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .p-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .p-features li {
+            font-size: 0.87rem;
+            color: var(--dark-mid);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .p-card.featured .p-features li {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .p-features li::before {
+            content: '✓';
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        @media (max-width:900px) {
+
+            .svc-detail-block,
+            .svc-detail-block.flip {
+                grid-template-columns: 1fr;
+                direction: ltr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav scrolled" id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">🪟</div>
+                CrystalClean
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="btn-nav">Get a Free Quote</a>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="blob-1"></div>
+        <div class="container">
+            <div class="ph-inner">
+                <div class="ph-breadcrumb"><a href="index.html">Home</a> / Services</div>
+                <div class="pill-badge" style="margin-bottom:1.8rem;"><span class="dot"></span> 3 Core Services</div>
+                <h1 class="section-heading">Services Built for<br /><span style="color:var(--gray);">Every
+                        Window.</span></h1>
+                <p class="body-text" style="max-width:500px; margin-top:1.2rem;">We don't believe in one-size-fits-all.
+                    Every property is unique — and so is our solution for it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES DETAIL -->
+    <section style="padding-bottom:5rem;">
+        <div class="container">
+
+            <div class="svc-detail-block">
+                <div class="svc-img-box">
+                    <img src="../residential_clean_1791199938252.png" alt="Residential window cleaning" />
+                </div>
+                <div>
+                    <div class="svc-num-large">01</div>
+                    <p class="label-text" style="margin-bottom:0.6rem; color:var(--accent);">For Homes</p>
+                    <h2 class="svc-title">Residential Window Cleaning</h2>
+                    <p class="svc-body">Brighten your living space with our residential service. We clean interior and
+                        exterior windows using purified water systems and eco-certified solutions — safe for children,
+                        pets, and plants.</p>
+                    <p class="svc-body">From single-storey homes to multi-level residences, our team covers every pane
+                        including skylights, conservatories, and hard-to-reach windows.</p>
+                    <div class="pill-list">
+                        <span class="mini-pill">Interior & Exterior</span>
+                        <span class="mini-pill">Eco-Friendly</span>
+                        <span class="mini-pill">Frame & Sill Clean</span>
+                        <span class="mini-pill">Same-Day Available</span>
+                    </div>
+                    <a href="contact.html" class="btn-dark">Book a Residential Clean →</a>
+                </div>
+            </div>
+
+            <div class="svc-detail-block flip">
+                <div class="svc-img-box">
+                    <img src="../window_hero_1791199884123.png" alt="Commercial window cleaning" />
+                </div>
+                <div>
+                    <div class="svc-num-large">02</div>
+                    <p class="label-text" style="margin-bottom:0.6rem; color:var(--accent);">For Businesses</p>
+                    <h2 class="svc-title">Commercial & High-Rise Cleaning</h2>
+                    <p class="svc-body">First impressions are everything. Our commercial window service ensures your
+                        storefront, office, or tower projects the professional image your clients expect — day in, day
+                        out.</p>
+                    <p class="svc-body">Water-fed poles, rope-access rigs, and elevated work platforms handle any height
+                        — fully insured, health-and-safety compliant.</p>
+                    <div class="pill-list">
+                        <span class="mini-pill">Rope Access ✓</span>
+                        <span class="mini-pill">Out-of-Hours</span>
+                        <span class="mini-pill">Recurring Contracts</span>
+                        <span class="mini-pill">£20M Liability Cover</span>
+                    </div>
+                    <a href="contact.html" class="btn-dark">Get a Commercial Quote →</a>
+                </div>
+            </div>
+
+            <div class="svc-detail-block">
+                <div class="svc-img-box">
+                    <img src="../window_service_1791199900353.png" alt="Glass restoration" />
+                </div>
+                <div>
+                    <div class="svc-num-large">03</div>
+                    <p class="label-text" style="margin-bottom:0.6rem; color:var(--accent);">Specialist Treatment</p>
+                    <h2 class="svc-title">Deep Clean & Glass Restoration</h2>
+                    <p class="svc-body">Hard water deposits, mineral staining, construction debris — these need more
+                        than a standard wipe. Our specialist team uses diamond-grade polishing compounds and acid-free
+                        descalers to revive glass to its original clarity.</p>
+                    <div class="pill-list">
+                        <span class="mini-pill">Hard Water Removal</span>
+                        <span class="mini-pill">Oxidation Treatment</span>
+                        <span class="mini-pill">Post-Construction</span>
+                        <span class="mini-pill">Protective Coating</span>
+                    </div>
+                    <a href="contact.html" class="btn-dark">Book Restoration →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing-section">
+        <div class="container">
+            <div style="max-width:560px; margin-bottom:3rem;">
+                <p class="label-text" style="margin-bottom:0.8rem;">Transparent Pricing</p>
+                <h2 class="section-heading">Clear Costs.<br /><span style="color:var(--gray);">No Surprises.</span></h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="p-card">
+                    <div class="p-tier">Starter</div>
+                    <div class="p-name">Home Essential</div>
+                    <div class="p-price">₹999<span class="p-per">/session</span></div>
+                    <div class="p-divider"></div>
+                    <ul class="p-features">
+                        <li>Up to 10 windows</li>
+                        <li>Exterior clean</li>
+                        <li>Frame & sill wipe</li>
+                        <li>Streak-free guarantee</li>
+                    </ul>
+                    <a href="contact.html" class="btn-white" style="width:100%; justify-content:center;">Book Now</a>
+                </div>
+                <div class="p-card featured">
+                    <div class="p-badge">Most Popular</div>
+                    <div class="p-tier">Premium</div>
+                    <div class="p-name">Home Complete</div>
+                    <div class="p-price">₹1,799<span class="p-per" style="color:rgba(255,255,255,0.35)">/session</span>
+                    </div>
+                    <div class="p-divider"></div>
+                    <ul class="p-features">
+                        <li>Up to 25 windows</li>
+                        <li>Interior + exterior</li>
+                        <li>Skylights & conservatory</li>
+                        <li>48-hr free re-clean</li>
+                        <li>Priority scheduling</li>
+                    </ul>
+                    <a href="contact.html" class="btn-accent" style="width:100%; justify-content:center;">Book Now</a>
+                </div>
+                <div class="p-card">
+                    <div class="p-tier">Commercial</div>
+                    <div class="p-name">Business Pro</div>
+                    <div class="p-price">Custom<span class="p-per">/quote</span></div>
+                    <div class="p-divider"></div>
+                    <ul class="p-features">
+                        <li>High-rise & multi-storey</li>
+                        <li>Recurring contracts</li>
+                        <li>Out-of-hours option</li>
+                        <li>Dedicated account manager</li>
+                    </ul>
+                    <a href="contact.html" class="btn-dark" style="width:100%; justify-content:center;">Request
+                        Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <div class="cta-blob" style="background:linear-gradient(135deg,#0057ff,#00c8ff); top:-100px; left:-100px;">
+        </div>
+        <p class="label-text" style="color:rgba(255,255,255,0.4); margin-bottom:0.8rem;">Ready to Start?</p>
+        <h2>Your Clearest View<br />Starts Right Here.</h2>
+        <p>Request a free, no-obligation quote — we respond within the hour.</p>
+        <div style="display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap;">
+            <a href="contact.html" class="btn-accent btn-lg">Book Free Quote →</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand-name">🪟 CrystalClean</div>
+                    <p class="footer-desc">India's most trusted window care specialists. Delivering clarity, one pane at
+                        a time since 2010.</p>
+                </div>
+                <div>
+                    <div class="footer-col-title">Site</div>
+                    <ul class="footer-col-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Services</div>
+                    <ul class="footer-col-links">
+                        <li><a href="services.html">Residential</a></li>
+                        <li><a href="services.html">Commercial</a></li>
+                        <li><a href="services.html">High-Rise</a></li>
+                        <li><a href="services.html">Restoration</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Contact</div>
+                    <ul class="footer-col-links">
+                        <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+                        <li><a href="mailto:hello@crystalclean.in">hello@crystalclean.in</a></li>
+                        <li><a href="#">Mumbai — 400 021</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2024 CrystalClean. All rights reserved.</span>
+                <span>Mumbai · Pune · Bengaluru · Delhi</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+    </script>
+</body>
+
+</html>

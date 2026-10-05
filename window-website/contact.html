@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — CrystalClean</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .page-header {
+            padding: 10rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header .blob-1 {
+            position: absolute;
+            top: -120px;
+            right: -100px;
+            width: 550px;
+            height: 550px;
+            background: linear-gradient(135deg, #b3d4ff, #66aaff);
+            border-radius: 40% 60% 55% 45%/50% 45% 55% 50%;
+            filter: blur(90px);
+            opacity: 0.3;
+        }
+
+        .ph-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .ph-breadcrumb {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 1.4rem;
+            justify-content: center;
+            display: flex;
+        }
+
+        .ph-breadcrumb a {
+            color: var(--accent);
+            font-weight: 600;
+            margin-right: 0.3rem
+        }
+
+        /* Contact Map/Cards */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            padding: 3rem 0 8rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-card);
+            padding: 2.2rem;
+            border: 1.5px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .info-text {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .info-text a {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Form */
+        .contact-form-box {
+            background: var(--bg-white);
+            border-radius: var(--radius-card);
+            padding: 3rem;
+            border: 1.5px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-head {
+            margin-bottom: 2rem;
+        }
+
+        .form-head h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-head p {
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark-mid);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-md);
+            border: 1.5px solid rgba(0, 0, 0, 0.1);
+            background: var(--bg);
+            font-family: var(--font);
+            font-size: 0.95rem;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--bg-white);
+            box-shadow: 0 0 0 4px rgba(0, 87, 255, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 6rem 0;
+            background: var(--bg-white);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            border: 1.5px solid rgba(0, 0, 0, 0.08);
+            border-radius: var(--radius-card);
+            padding: 1.8rem 2rem;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .faq-q {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -0.01em;
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-a {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        @media (max-width:900px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-box {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav scrolled" id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">🪟</div>
+                CrystalClean
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="btn-nav">Get a Free Quote</a>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="blob-1"></div>
+        <div class="container">
+            <div class="ph-inner">
+                <div class="ph-breadcrumb"><a href="index.html">Home</a> / Contact</div>
+                <h1 class="section-heading">Let's Get Your<br /><span style="color:var(--gray);">Windows Shining.</span>
+                </h1>
+                <p class="body-text" style="max-width:520px; margin:1.2rem auto 0;">Reach out for a free, no-obligation
+                    quote. Our team usually responds within an hour during business times.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT CONTENT -->
+    <section>
+        <div class="container">
+            <div class="contact-layout">
+                <!-- Info Left -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <span class="info-icon">📞</span>
+                        <h3 class="info-title">Call Us</h3>
+                        <p class="info-text">Available Monday to Saturday, 8am - 6pm.</p>
+                        <p class="info-text" style="font-size:1.1rem; margin-top:0.5rem;"><a
+                                href="tel:+919876543210">+91 98765 43210</a></p>
+                    </div>
+
+                    <div class="info-card">
+                        <span class="info-icon">✉️</span>
+                        <h3 class="info-title">Email Us</h3>
+                        <p class="info-text">Drop us a line anytime. We reply promptly.</p>
+                        <p class="info-text" style="font-size:1.1rem; margin-top:0.5rem;"><a
+                                href="mailto:hello@crystalclean.in">hello@crystalclean.in</a></p>
+                    </div>
+
+                    <div class="info-card">
+                        <span class="info-icon">📍</span>
+                        <h3 class="info-title">Head Office</h3>
+                        <p class="info-text">14, Nariman Point, <br />Mumbai, Maharashtra — 400 021.</p>
+                    </div>
+                </div>
+
+                <!-- Form Right -->
+                <div class="contact-form-box">
+                    <div class="form-head">
+                        <h2>Request a Free Quote</h2>
+                        <p>Fill out the form below and we'll get back to you with pricing details.</p>
+                    </div>
+                    <form
+                        onsubmit="event.preventDefault(); alert('Message sent successfully! Our team will contact you soon.');">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" placeholder="John" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" placeholder="Doe" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" placeholder="john@example.com" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone Number (Optional)</label>
+                            <input type="tel" class="form-control" placeholder="+91" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Service Type</label>
+                            <select class="form-control">
+                                <option>Residential Cleaning</option>
+                                <option>Commercial / Office</option>
+                                <option>High-Rise Cleaning</option>
+                                <option>Post-Construction / Restoration</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Project Details</label>
+                            <textarea class="form-control"
+                                placeholder="Tell us about your property (e.g., Number of windows, storeys)..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-dark"
+                            style="width:100%; justify-content:center; padding:1.2rem;">Send Request →</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div style="text-align:center;">
+                <p class="label-text" style="margin-bottom:0.8rem;">Got Questions?</p>
+                <h2 class="section-heading">Frequently Asked.</h2>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-q">Do you clean interior windows as well?</h3>
+                    <p class="faq-a">Yes, absolutely. We offer comprehensive interior and exterior cleaning packages for
+                        both residential and commercial properties, taking care to protect your floors and furniture.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-q">What products do you use?</h3>
+                    <p class="faq-a">We use purified water systems and eco-certified, biodegradable cleaning solutions
+                        that are completely safe for your pets, plants, and family.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-q">Are your technicians insured?</h3>
+                    <p class="faq-a">Yes. Every technician is fully trained, background-checked, and covered by our
+                        comprehensive £20M public liability insurance.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-q">Do I need to be home during the cleaning?</h3>
+                    <p class="faq-a">For exterior-only cleans, you do not need to be present as long as we have access
+                        to the property. For interior cleans, we require someone to be home to allow us access.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand-name">🪟 CrystalClean</div>
+                    <p class="footer-desc">India's most trusted window care specialists. Delivering clarity, one pane at
+                        a time since 2010.</p>
+                </div>
+                <div>
+                    <div class="footer-col-title">Site</div>
+                    <ul class="footer-col-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Services</div>
+                    <ul class="footer-col-links">
+                        <li><a href="services.html">Residential</a></li>
+                        <li><a href="services.html">Commercial</a></li>
+                        <li><a href="services.html">High-Rise</a></li>
+                        <li><a href="services.html">Restoration</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Contact</div>
+                    <ul class="footer-col-links">
+                        <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+                        <li><a href="mailto:hello@crystalclean.in">hello@crystalclean.in</a></li>
+                        <li><a href="#">Mumbai — 400 021</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2024 CrystalClean. All rights reserved.</span>
+                <span>Mumbai · Pune · Bengaluru · Delhi</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+    </script>
+</body>
+
+</html>

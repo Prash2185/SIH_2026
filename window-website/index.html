@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CrystalClean — Window Cleaning, Done Right</title>
+  <meta name="description"
+    content="Professional window cleaning for homes and businesses. Streak-free results, guaranteed." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-blob-1 {
+      position: absolute;
+      top: -100px;
+      right: -80px;
+      width: 600px;
+      height: 600px;
+      background: linear-gradient(135deg, #b3d4ff, #66aaff);
+      border-radius: 42% 58% 65% 35% / 56% 44% 56% 44%;
+      filter: blur(80px);
+      opacity: 0.35;
+      animation: morph 8s ease-in-out infinite;
+    }
+
+    .hero-blob-2 {
+      position: absolute;
+      bottom: -80px;
+      left: -100px;
+      width: 450px;
+      height: 450px;
+      background: linear-gradient(135deg, #cce8ff, #a8d4f5);
+      border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+      filter: blur(90px);
+      opacity: 0.25;
+      animation: morph 12s ease-in-out infinite reverse;
+    }
+
+    @keyframes morph {
+
+      0%,
+      100% {
+        border-radius: 42% 58% 65% 35% / 56% 44% 56% 44%;
+      }
+
+      33% {
+        border-radius: 65% 35% 42% 58% / 44% 56% 44% 56%;
+      }
+
+      66% {
+        border-radius: 35% 65% 58% 42% / 56% 44% 56% 44%;
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero-content .pill-badge {
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-h1 {
+      font-size: clamp(4rem, 8.5vw, 9.5rem);
+      font-weight: 900;
+      line-height: 0.97;
+      letter-spacing: -0.045em;
+      color: var(--dark);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-h1 .line-2 {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--gray);
+      max-width: 500px;
+      line-height: 1.72;
+      font-weight: 400;
+      margin-bottom: 2.8rem;
+      text-align: center;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    /* ─ Floating Icon Chips ─ */
+    .icon-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 68px;
+      height: 68px;
+      background: var(--bg-white);
+      border-radius: 18px;
+      font-size: 2rem;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.13), 0 2px 8px rgba(0, 0, 0, 0.07);
+      transition: var(--transition);
+      flex-shrink: 0;
+      animation: floatY 3s ease-in-out infinite;
+    }
+
+    .icon-chip:nth-child(2) {
+      animation-delay: -1s;
+      animation-duration: 3.5s;
+    }
+
+    .icon-chip:nth-child(3) {
+      animation-delay: -2s;
+      animation-duration: 4s;
+    }
+
+    @keyframes floatY {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* ── Marquee Strip ── */
+    .marquee-strip {
+      overflow: hidden;
+      border-top: 1px solid rgba(0, 0, 0, 0.07);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+      padding: 1.2rem 0;
+      background: var(--bg-white);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 3.5rem;
+      animation: marquee 18s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+
+    .marquee-track span {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .marquee-track span::before {
+      content: '✦';
+      color: var(--accent);
+      font-size: 0.55rem;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ── About Strip ── */
+    .about-strip {
+      padding: 6rem 0;
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-img-box {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+
+    .about-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-tag {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .about-tag .big {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--dark);
+    }
+
+    .about-tag .small {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .about-text .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .check-list {
+      margin-top: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.92rem;
+      color: var(--dark-mid);
+    }
+
+    .check-list li::before {
+      content: '→';
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    @media (max-width: 900px) {
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero-h1 {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">🪟</div>
+        CrystalClean
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn-nav">Get a Free Quote</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-blob-1"></div>
+    <div class="hero-blob-2"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="pill-badge">
+          <span class="dot"></span>
+          ⭐ Rated #1 Window Care — 2024
+        </div>
+        <h1 class="hero-h1">
+          Windows That<br />
+          <span class="line-2">
+            Shine
+            <span class="icon-chip">🪟</span>
+            <span class="icon-chip">✨</span>
+            <span class="icon-chip">💧</span>
+            Perfectly.
+          </span>
+        </h1>
+      </div>
+      <p class="hero-sub">
+        From high-rise towers to cosy homes, we deliver flawless streak-free results with every visit. Trusted by 3,200+
+        customers across India.
+      </p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn-dark btn-lg">Explore Services</a>
+        <a href="services.html" class="btn-white btn-lg">View Pricing Plans</a>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row">
+        <div class="stat-col">
+          <div class="stat-num">3,200+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-col">
+          <div class="stat-num">14 yrs</div>
+          <div class="stat-label">In Operation</div>
+        </div>
+        <div class="stat-col">
+          <div class="stat-num">98%</div>
+          <div class="stat-label">Satisfaction Rate</div>
+        </div>
+        <div class="stat-col">
+          <div class="stat-num">50k+</div>
+          <div class="stat-label">Windows Cleaned</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>Residential Cleaning</span>
+      <span>Commercial High-Rise</span>
+      <span>Glass Restoration</span>
+      <span>Streak-Free Guaranteed</span>
+      <span>Eco-Friendly Solutions</span>
+      <span>Same-Day Booking</span>
+      <span>Fully Insured</span>
+      <span>IOSH Certified</span>
+      <span>Residential Cleaning</span>
+      <span>Commercial High-Rise</span>
+      <span>Glass Restoration</span>
+      <span>Streak-Free Guaranteed</span>
+      <span>Eco-Friendly Solutions</span>
+      <span>Same-Day Booking</span>
+      <span>Fully Insured</span>
+      <span>IOSH Certified</span>
+    </div>
+  </div>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="section">
+    <div class="container">
+      <div
+        style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <p class="label-text" style="margin-bottom:0.8rem;">What We Do</p>
+          <h2 class="section-heading">Services Built<br />for Every Property.</h2>
+        </div>
+        <a href="services.html" class="btn-dark">View All Services</a>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <span class="svc-emoji">🏠</span>
+          <h3 class="card-heading" style="margin-bottom:0.6rem;">Residential Cleaning</h3>
+          <p class="body-text" style="font-size:0.9rem;">Interior, exterior, frames and sills — your home windows
+            cleaned to perfection with purified water and eco-certified solutions.</p>
+          <a href="services.html"
+            style="display:inline-flex; align-items:center; gap:0.3rem; margin-top:1.2rem; font-size:0.82rem; font-weight:700; color:var(--accent);">Learn
+            more →</a>
+        </div>
+        <div class="svc-card">
+          <span class="svc-emoji">🏢</span>
+          <h3 class="card-heading" style="margin-bottom:0.6rem;">Commercial & High-Rise</h3>
+          <p class="body-text" style="font-size:0.9rem;">Rope-access rigs, water-fed poles, and elevating platforms for
+            offices, hotels, and storefronts of any height.</p>
+          <a href="services.html"
+            style="display:inline-flex; align-items:center; gap:0.3rem; margin-top:1.2rem; font-size:0.82rem; font-weight:700; color:var(--accent);">Learn
+            more →</a>
+        </div>
+        <div class="svc-card">
+          <span class="svc-emoji">🔬</span>
+          <h3 class="card-heading" style="margin-bottom:0.6rem;">Deep Clean & Restoration</h3>
+          <p class="body-text" style="font-size:0.9rem;">Hard water stains, construction residue, oxidation build-up —
+            we restore glass to its original, pristine clarity.</p>
+          <a href="services.html"
+            style="display:inline-flex; align-items:center; gap:0.3rem; margin-top:1.2rem; font-size:0.82rem; font-weight:700; color:var(--accent);">Learn
+            more →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT STRIP -->
+  <section class="about-strip" style="background:var(--bg-white);">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-img-box">
+          <img src="../team_photo_1791199923150.png" alt="Crystal Clean team" />
+          <div class="about-tag">
+            <div>
+              <div class="big">14+</div>
+              <div class="small">Years of<br />Excellence</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text">
+          <p class="eyebrow">Who We Are</p>
+          <h2 class="section-heading" style="font-size:clamp(2.4rem,4vw,3.8rem);">The Standard in Premium Window Care.
+          </h2>
+          <p class="body-text" style="margin-top:1.4rem;">Founded in Mumbai in 2010, Crystal Clean grew from one van and
+            one promise — if it's not perfect, we come back. Today, a team of 40 certified professionals serves 3,200+
+            clients across four cities.</p>
+          <ul class="check-list">
+            <li>Eco-friendly, streak-free cleaning solutions</li>
+            <li>Background-verified, in-house trained technicians</li>
+            <li>Flexible scheduling including weekends & evenings</li>
+            <li>48-hour free re-clean guarantee, no questions asked</li>
+          </ul>
+          <div style="margin-top:2.2rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
+            <a href="about.html" class="btn-dark">Our Story →</a>
+            <a href="contact.html" class="btn-white">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="container">
+      <div style="margin-bottom:3rem;">
+        <p class="label-text" style="margin-bottom:0.8rem;">How It Works</p>
+        <h2 class="section-heading">Simple. Fast. <span style="color:var(--gray);">Spotless.</span></h2>
+      </div>
+      <div class="process-row">
+        <div class="process-col">
+          <div class="process-step-num">01</div>
+          <h3 class="card-heading" style="margin-bottom:0.5rem;">Get a Free Quote</h3>
+          <p class="body-text" style="font-size:0.88rem;">Fill our quick form or call. We assess your property and give
+            a clear, upfront price — no hidden charges.</p>
+        </div>
+        <div class="process-col">
+          <div class="process-step-num">02</div>
+          <h3 class="card-heading" style="margin-bottom:0.5rem;">We Show Up On Time</h3>
+          <p class="body-text" style="font-size:0.88rem;">Our certified team arrives at your scheduled slot, fully
+            equipped and ready to start immediately.</p>
+        </div>
+        <div class="process-col">
+          <div class="process-step-num">03</div>
+          <h3 class="card-heading" style="margin-bottom:0.5rem;">Thorough Clean</h3>
+          <p class="body-text" style="font-size:0.88rem;">We work methodically through every window — interior,
+            exterior, frame, and sill. Every pane inspected.</p>
+        </div>
+        <div class="process-col">
+          <div class="process-step-num">04</div>
+          <h3 class="card-heading" style="margin-bottom:0.5rem;">Guaranteed Results</h3>
+          <p class="body-text" style="font-size:0.88rem;">Not happy? Call within 48 hours and we'll re-clean affected
+            windows completely free of charge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" style="background:var(--bg-white); padding-top:5rem; padding-bottom:5rem;">
+    <div class="container">
+      <div
+        style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <p class="label-text" style="margin-bottom:0.8rem;">Client Stories</p>
+          <h2 class="section-heading">Real Words.<br />Real Results.</h2>
+        </div>
+        <div class="pill-badge">98% Satisfaction Rate ⭐</div>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"Absolutely stunning. My office windows haven't looked this good since the building was
+            first constructed. Fast, professional, zero mess."</p>
+          <div style="display:flex; align-items:center; gap:0.7rem;">
+            <div class="testi-avatar">RK</div>
+            <div>
+              <div class="testi-name">Rahul Kapoor</div>
+              <div class="testi-role">Property Manager, Mumbai</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"We've tried three other services. None come close. Streak-free, crystal clear windows
+            every single time. Crystal Clean is our permanent vendor."</p>
+          <div style="display:flex; align-items:center; gap:0.7rem;">
+            <div class="testi-avatar">SP</div>
+            <div>
+              <div class="testi-name">Sunita Patel</div>
+              <div class="testi-role">Homeowner, Pune</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-quote">"18-storey office tower, completed on time, fully insured, and our tenants noticed
+            immediately. Will sign an annual contract without hesitation."</p>
+          <div style="display:flex; align-items:center; gap:0.7rem;">
+            <div class="testi-avatar">AJ</div>
+            <div>
+              <div class="testi-name">Arjun Joshi</div>
+              <div class="testi-role">Facilities Director, Bengaluru</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-blob" style="background:linear-gradient(135deg,#0057ff,#00c8ff); top:-100px; left:-100px;"></div>
+    <div class="cta-blob" style="background:linear-gradient(135deg,#66aaff,#b3d4ff); bottom:-80px; right:-80px;"></div>
+    <p class="label-text" style="color:rgba(255,255,255,0.45); margin-bottom:0.8rem;">Ready to Start?</p>
+    <h2>Your Clearest View<br />Starts Right Here.</h2>
+    <p>Join thousands of satisfied customers. Request your free, no-obligation quote — we respond within the hour.</p>
+    <div style="display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap;">
+      <a href="contact.html" class="btn-accent btn-lg">Book Free Quote →</a>
+      <a href="services.html"
+        style="display:inline-flex; align-items:center; padding:1.05rem 2.4rem; background:rgba(255,255,255,0.1); color:#fff; border-radius:var(--radius-pill); font-weight:600; font-size:0.95rem; border:2px solid rgba(255,255,255,0.15); transition:var(--transition);">View
+        Services</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">🪟 CrystalClean</div>
+          <p class="footer-desc">India's most trusted window care specialists. Delivering clarity, one pane at a time
+            since 2010.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Site</div>
+          <ul class="footer-col-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-col-links">
+            <li><a href="services.html">Residential</a></li>
+            <li><a href="services.html">Commercial</a></li>
+            <li><a href="services.html">High-Rise</a></li>
+            <li><a href="services.html">Restoration</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-col-links">
+            <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><a href="mailto:hello@crystalclean.in">hello@crystalclean.in</a></li>
+            <li><a href="#">Mumbai — 400 021</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2024 CrystalClean. All rights reserved.</span>
+        <span>Mumbai · Pune · Bengaluru · Delhi</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  </script>
+</body>
+
+</html>
